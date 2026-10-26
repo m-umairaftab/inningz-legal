@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Terms of Service for the CricPulse cricket scoring app.">
+<title>CricPulse Terms of Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Sora:wght@600;700&display=swap">
+<style>
+/* Layout: one reading column. A thin pulse line (the heartbeat from the app logo) separates the masthead from the document. */
+:root{
+  --bg:#F4F7F5; --surface:#FFFFFF; --fg:#0F172A; --muted:#546274; --line:#DAE3DE;
+  --accent:#157A3E; --accent-bg:#E7F4EC; --accent-line:#BFE0CB;
+  --pulse:#D6283A;
+  --warn:#9A3412; --warn-bg:#FDEFE8; --warn-line:#F2CDBD;
+  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-display:'Sora','Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --surface:#111B30; --fg:#E7EDF5; --muted:#92A3B8; --line:#1E2B44;
+    --accent:#4ADE9A; --accent-bg:#0E2A22; --accent-line:#1B5A43;
+    --pulse:#FF5468;
+    --warn:#FDBA9B; --warn-bg:#2B1812; --warn-line:#5A3223;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --surface:#111B30; --fg:#E7EDF5; --muted:#92A3B8; --line:#1E2B44;
+  --accent:#4ADE9A; --accent-bg:#0E2A22; --accent-line:#1B5A43;
+  --pulse:#FF5468;
+  --warn:#FDBA9B; --warn-bg:#2B1812; --warn-line:#5A3223;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg);
+  font:400 16px/1.7 var(--font-body);
+  padding-block:28px 72px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:44rem;margin:0 auto;display:flex;flex-direction:column;gap:28px;min-width:0}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font:700 1.15rem/1 var(--font-display);letter-spacing:.01em}
+.brand b{color:var(--accent);font-weight:700}
+.doc-kind{font:500 .72rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pulse{display:flex;align-items:center;gap:0}
+.pulse svg{flex:none;display:block}
+.pulse i{flex:1;height:2px;background:var(--line);min-width:0}
+.pulse .lead{flex:none;width:24px;height:2px;background:var(--pulse)}
+h1{font:700 clamp(1.9rem,5.4vw,2.7rem)/1.12 var(--font-display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 0;padding:0;list-style:none;font:500 .76rem/1.5 var(--font-mono);color:var(--muted)}
+.meta strong{color:var(--fg);font-weight:500}
+.lede{font-size:1.06rem;color:var(--fg);margin:0;max-width:62ch}
+.summary{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.summary h2{margin:0;font:600 .74rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.summary ul{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:6px}
+.summary li::marker{color:var(--accent)}
+.toc{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px 20px}
+.toc h2{margin:0 0 10px;font:600 .74rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0;padding:0;list-style:none;columns:2 15rem;column-gap:28px}
+.toc li{break-inside:avoid;padding:3px 0;font-size:.94rem}
+.toc a{text-decoration:none;color:var(--fg)}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+.toc .n{display:inline-block;width:1.9em;font:500 .78rem var(--font-mono);color:var(--accent)}
+.sec{display:flex;flex-direction:column;gap:12px;min-width:0;scroll-margin-top:16px}
+.sec h2{margin:0;font:600 1.3rem/1.3 var(--font-display);display:flex;gap:12px;align-items:baseline;text-wrap:balance}
+.sec h2 .n{font:500 .8rem var(--font-mono);color:var(--accent);flex:none;min-width:1.7em}
+.sec h3{margin:10px 0 0;font:600 1rem/1.4 var(--font-body)}
+.sec p{margin:0;max-width:65ch}
+.sec ul,.sec ol.plain{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px;max-width:65ch}
+.sec li::marker{color:var(--muted)}
+.sec .sub{display:flex;flex-direction:column;gap:6px}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px;max-width:65ch}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:12px;align-items:start}
+ol.steps li::before{content:counter(s);width:2rem;height:2rem;border-radius:50%;background:var(--accent-bg);border:1px solid var(--accent-line);color:var(--accent);font:600 .85rem/1 var(--font-mono);display:grid;place-items:center}
+ol.steps li>div{padding-top:3px;min-width:0}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:30rem;font-size:.93rem;line-height:1.5}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font:600 .7rem/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+td:first-child{font-weight:500}
+.tag{display:inline-block;font:600 .68rem/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:6px;white-space:nowrap}
+.tag.del{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-line)}
+.tag.keep{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line)}
+.note{border:1px solid var(--warn-line);background:var(--warn-bg);color:var(--fg);border-radius:12px;padding:14px 16px;max-width:65ch}
+.contact{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.contact .label{font:600 .72rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.contact code{font:500 1rem/1.5 var(--font-mono);color:var(--fg);word-break:break-all;user-select:all}
+.foot{font:500 .76rem/1.6 var(--font-mono);color:var(--muted);padding-top:4px}
+@media (max-width:480px){
+  .sec h2{flex-direction:column;gap:2px}
+  th,td{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="mast">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.5" fill="#D6283A"/><path d="M6.2 5.8c4.6 3.4 4.6 13 0 16.4M21.8 5.8c-4.6 3.4-4.6 13 0 16.4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="1.6 2.2"/></svg>
+      <span>Cric<b>Pulse</b></span>
+    </div>
+    <span class="doc-kind">Terms of Service</span>
+  </header>
+  <div class="pulse" aria-hidden="true">
+    <span class="lead"></span>
+    <svg width="92" height="26" viewBox="0 0 92 26"><polyline points="0,13 20,13 28,13 34,4 42,22 49,8 55,13 92,13" fill="none" stroke="var(--pulse)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    <i></i>
+  </div>
+  <div>
+    <h1>The rules for using CricPulse</h1>
+    <ul class="meta">
+      <li><strong>Effective</strong> 26 October 2026</li>
+      <li><strong>App</strong> CricPulse for Android</li>
+    </ul>
+  </div>
+<p class="lede">The short rules for using CricPulse, written to be read.</p>
+<aside class="summary">
+  <h2>In short</h2>
+  <ul>
+    <li>CricPulse is a free cricket scoring tool. Use it fairly and keep your account safe.</li>
+    <li>Your teams, players and scores are yours. You let us store and show them so the app can work.</li>
+    <li>Scores are only as accurate as what is entered. This is not an official record and not for betting.</li>
+    <li>You can stop at any time and delete your account in the app.</li>
+  </ul>
+</aside>
+<nav class="toc" aria-label="Contents"><h2>On this page</h2><ol><li><a href="#agree"><span class="n">01</span>Agreeing to these terms</a></li><li><a href="#app"><span class="n">02</span>What CricPulse does</a></li><li><a href="#accounts"><span class="n">03</span>Accounts and guest mode</a></li><li><a href="#content"><span class="n">04</span>Your content</a></li><li><a href="#use"><span class="n">05</span>Using the app fairly</a></li><li><a href="#accuracy"><span class="n">06</span>Scores and statistics</a></li><li><a href="#third"><span class="n">07</span>Other services</a></li><li><a href="#ending"><span class="n">08</span>Ending your use</a></li><li><a href="#ip"><span class="n">09</span>Ownership of the app</a></li><li><a href="#disclaimer"><span class="n">10</span>No warranty</a></li><li><a href="#liability"><span class="n">11</span>Limit of liability</a></li><li><a href="#changes"><span class="n">12</span>Changes to these terms</a></li><li><a href="#law"><span class="n">13</span>Governing law</a></li></ol></nav>
+<section class="sec" id="agree"><h2><span class="n">01</span><span>Agreeing to these terms</span></h2>
+<p>These terms are an agreement between you and the people who make CricPulse (&ldquo;we&rdquo;, &ldquo;us&rdquo;) about your use of the CricPulse app. By installing or using it you accept them. If you do not agree, please do not use the app. You must be at least 13 years old. If you are under the age of majority where you live, use CricPulse with a parent or guardian&rsquo;s permission.</p>
+</section>
+<section class="sec" id="app"><h2><span class="n">02</span><span>What CricPulse does</span></h2>
+<p>CricPulse lets you create teams and players, score matches ball by ball or as an innings total, view scorecards and share them, and score a match together with another phone. The app is free to use. We may add, change or remove features over time, including through over-the-air updates.</p>
+</section>
+<section class="sec" id="accounts"><h2><span class="n">03</span><span>Accounts and guest mode</span></h2>
+<p>You can use CricPulse as a guest or sign in with Google. A guest&rsquo;s data lives only on their phone and is lost if the app is removed or its storage is cleared. Signing in lets you back up and share. You are responsible for your Google account and for what happens under your CricPulse account.</p>
+</section>
+<section class="sec" id="content"><h2><span class="n">04</span><span>Your content</span></h2>
+<p>Team names, players, notes, scores and anything else you enter stay yours. You give us permission to store, process and display that content only as needed to run the app for you and the people you share a match with.</p>
+<p>When you share a match you choose who receives the join code. People who join can see that match and score the innings given to them. Only share a code with people you trust, and only enter names of people who are happy to be listed.</p>
+</section>
+<section class="sec" id="use"><h2><span class="n">05</span><span>Using the app fairly</span></h2>
+<p>Please do not:</p>
+<ul>
+  <li>break the law or enter content that is abusive, hateful or invades someone&rsquo;s privacy;</li>
+  <li>try to access accounts or matches that are not yours, or guess join codes;</li>
+  <li>disrupt, overload or probe the service, or scrape it automatically;</li>
+  <li>copy, resell or reverse engineer the app, except where the law allows it;</li>
+  <li>pretend to be another person or team.</li>
+</ul>
+</section>
+<section class="sec" id="accuracy"><h2><span class="n">06</span><span>Scores and statistics</span></h2>
+<p>CricPulse records what its users enter. Scores, rates and statistics are only as accurate as that input and the rules you choose for a match. The app is a scoring aid. It is not an official record of any league, board or tournament, and it must not be used for betting.</p>
+</section>
+<section class="sec" id="third"><h2><span class="n">07</span><span>Other services</span></h2>
+<p>CricPulse relies on Google (sign-in), Supabase (database and hosting), Expo (updates) and Google Play (distribution). Their own terms apply to their services. If one of them is unavailable, parts of CricPulse may be too.</p>
+</section>
+<section class="sec" id="ending"><h2><span class="n">08</span><span>Ending your use</span></h2>
+<p>You can stop using CricPulse at any time and delete your account in the app (Settings, Account, Delete Account) or by emailing us. We may suspend or end access for anyone who breaks these terms or puts the service or other people at risk.</p>
+</section>
+<section class="sec" id="ip"><h2><span class="n">09</span><span>Ownership of the app</span></h2>
+<p>The CricPulse app, name and logo belong to us. We give you a personal, non-exclusive, non-transferable licence to use the app for your own cricket scoring. This does not transfer any ownership to you.</p>
+</section>
+<section class="sec" id="disclaimer"><h2><span class="n">10</span><span>No warranty</span></h2>
+<p>CricPulse is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo;. We work to keep it reliable but cannot promise it will always run without errors or interruptions, or that data will never be lost. Keep your own record of important matches.</p>
+</section>
+<section class="sec" id="liability"><h2><span class="n">11</span><span>Limit of liability</span></h2>
+<p>To the fullest extent the law allows, we are not liable for indirect or consequential loss, or for lost data, arising from your use of the app. Nothing in these terms limits liability that cannot be limited by law.</p>
+</section>
+<section class="sec" id="changes"><h2><span class="n">12</span><span>Changes to these terms</span></h2>
+<p>We may update these terms. The effective date at the top shows the latest version, and we will tell you in the app about significant changes. Continuing to use CricPulse after a change means you accept it. This version is effective 26 October 2026.</p>
+</section>
+<section class="sec" id="law"><h2><span class="n">13</span><span>Governing law</span></h2>
+<p>These terms are governed by the laws of Pakistan. Where the law of your country gives you consumer rights that cannot be waived, those rights still apply.</p>
+</section>
+  <section class="contact" id="contact">
+    <span class="label">Contact</span>
+    <code>m.umair.umairaftab@gmail.com</code>
+    <span>Questions about these terms? Write to us. <a href="mailto:m.umair.umairaftab@gmail.com">Open in your email app</a>.</span>
+  </section>
+  <p class="foot">&copy; 2026 CricPulse. A cricket scoring app.</p>
+</main>
+</body>
+</html>

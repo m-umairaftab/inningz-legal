@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How to delete your CricPulse account and the data linked to it.">
+<title>CricPulse Delete Account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Sora:wght@600;700&display=swap">
+<style>
+/* Layout: one reading column. A thin pulse line (the heartbeat from the app logo) separates the masthead from the document. */
+:root{
+  --bg:#F4F7F5; --surface:#FFFFFF; --fg:#0F172A; --muted:#546274; --line:#DAE3DE;
+  --accent:#157A3E; --accent-bg:#E7F4EC; --accent-line:#BFE0CB;
+  --pulse:#D6283A;
+  --warn:#9A3412; --warn-bg:#FDEFE8; --warn-line:#F2CDBD;
+  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-display:'Sora','Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --surface:#111B30; --fg:#E7EDF5; --muted:#92A3B8; --line:#1E2B44;
+    --accent:#4ADE9A; --accent-bg:#0E2A22; --accent-line:#1B5A43;
+    --pulse:#FF5468;
+    --warn:#FDBA9B; --warn-bg:#2B1812; --warn-line:#5A3223;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --surface:#111B30; --fg:#E7EDF5; --muted:#92A3B8; --line:#1E2B44;
+  --accent:#4ADE9A; --accent-bg:#0E2A22; --accent-line:#1B5A43;
+  --pulse:#FF5468;
+  --warn:#FDBA9B; --warn-bg:#2B1812; --warn-line:#5A3223;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg);
+  font:400 16px/1.7 var(--font-body);
+  padding-block:28px 72px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:44rem;margin:0 auto;display:flex;flex-direction:column;gap:28px;min-width:0}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font:700 1.15rem/1 var(--font-display);letter-spacing:.01em}
+.brand b{color:var(--accent);font-weight:700}
+.doc-kind{font:500 .72rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pulse{display:flex;align-items:center;gap:0}
+.pulse svg{flex:none;display:block}
+.pulse i{flex:1;height:2px;background:var(--line);min-width:0}
+.pulse .lead{flex:none;width:24px;height:2px;background:var(--pulse)}
+h1{font:700 clamp(1.9rem,5.4vw,2.7rem)/1.12 var(--font-display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 0;padding:0;list-style:none;font:500 .76rem/1.5 var(--font-mono);color:var(--muted)}
+.meta strong{color:var(--fg);font-weight:500}
+.lede{font-size:1.06rem;color:var(--fg);margin:0;max-width:62ch}
+.summary{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.summary h2{margin:0;font:600 .74rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.summary ul{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:6px}
+.summary li::marker{color:var(--accent)}
+.toc{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px 20px}
+.toc h2{margin:0 0 10px;font:600 .74rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0;padding:0;list-style:none;columns:2 15rem;column-gap:28px}
+.toc li{break-inside:avoid;padding:3px 0;font-size:.94rem}
+.toc a{text-decoration:none;color:var(--fg)}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+.toc .n{display:inline-block;width:1.9em;font:500 .78rem var(--font-mono);color:var(--accent)}
+.sec{display:flex;flex-direction:column;gap:12px;min-width:0;scroll-margin-top:16px}
+.sec h2{margin:0;font:600 1.3rem/1.3 var(--font-display);display:flex;gap:12px;align-items:baseline;text-wrap:balance}
+.sec h2 .n{font:500 .8rem var(--font-mono);color:var(--accent);flex:none;min-width:1.7em}
+.sec h3{margin:10px 0 0;font:600 1rem/1.4 var(--font-body)}
+.sec p{margin:0;max-width:65ch}
+.sec ul,.sec ol.plain{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px;max-width:65ch}
+.sec li::marker{color:var(--muted)}
+.sec .sub{display:flex;flex-direction:column;gap:6px}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px;max-width:65ch}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:12px;align-items:start}
+ol.steps li::before{content:counter(s);width:2rem;height:2rem;border-radius:50%;background:var(--accent-bg);border:1px solid var(--accent-line);color:var(--accent);font:600 .85rem/1 var(--font-mono);display:grid;place-items:center}
+ol.steps li>div{padding-top:3px;min-width:0}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:30rem;font-size:.93rem;line-height:1.5}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font:600 .7rem/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+td:first-child{font-weight:500}
+.tag{display:inline-block;font:600 .68rem/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:6px;white-space:nowrap}
+.tag.del{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-line)}
+.tag.keep{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line)}
+.note{border:1px solid var(--warn-line);background:var(--warn-bg);color:var(--fg);border-radius:12px;padding:14px 16px;max-width:65ch}
+.contact{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.contact .label{font:600 .72rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.contact code{font:500 1rem/1.5 var(--font-mono);color:var(--fg);word-break:break-all;user-select:all}
+.foot{font:500 .76rem/1.6 var(--font-mono);color:var(--muted);padding-top:4px}
+@media (max-width:480px){
+  .sec h2{flex-direction:column;gap:2px}
+  th,td{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="mast">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.5" fill="#D6283A"/><path d="M6.2 5.8c4.6 3.4 4.6 13 0 16.4M21.8 5.8c-4.6 3.4-4.6 13 0 16.4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="1.6 2.2"/></svg>
+      <span>Cric<b>Pulse</b></span>
+    </div>
+    <span class="doc-kind">Delete Account</span>
+  </header>
+  <div class="pulse" aria-hidden="true">
+    <span class="lead"></span>
+    <svg width="92" height="26" viewBox="0 0 92 26"><polyline points="0,13 20,13 28,13 34,4 42,22 49,8 55,13 92,13" fill="none" stroke="var(--pulse)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    <i></i>
+  </div>
+  <div>
+    <h1>Delete your CricPulse account</h1>
+    <ul class="meta">
+      <li><strong>Effective</strong> 26 October 2026</li>
+      <li><strong>App</strong> CricPulse for Android</li>
+    </ul>
+  </div>
+
+<p class="lede">You can delete your CricPulse account and the data linked to it at any time. There are two ways to do it.</p>
+
+<section class="sec" id="in-app">
+  <h2><span class="n">A</span><span>Delete it in the app</span></h2>
+  <p>This is the fastest way. It takes effect immediately.</p>
+  <ol class="steps">
+    <li><div>Open <strong>CricPulse</strong> and tap the <strong>Settings</strong> tab.</div></li>
+    <li><div>In the <strong>Account</strong> card, tap <strong>Delete Account</strong>.</div></li>
+    <li><div>Read the warning and confirm. Your account and its data are deleted, and the app returns to the sign-in screen.</div></li>
+  </ol>
+</section>
+
+<section class="sec" id="by-email">
+  <h2><span class="n">B</span><span>Ask us by email</span></h2>
+  <p>Use this if you can no longer open the app or you have already removed it.</p>
+  <ol class="steps">
+    <li><div>Send an email to <strong>m.umair.umairaftab@gmail.com</strong> from the address linked to your Google account.</div></li>
+    <li><div>Use the subject <strong>Delete my CricPulse account</strong>.</div></li>
+    <li><div>We confirm that the request is from you, then delete the account. We finish within 30 days, and usually within a few days.</div></li>
+  </ol>
+</section>
+
+<section class="sec" id="what">
+  <h2><span class="n">C</span><span>What happens to your data</span></h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Data</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Name, email address, profile picture link, account ID</td><td><span class="tag del">Deleted</span></td></tr>
+        <tr><td>Your profile</td><td><span class="tag del">Deleted</span></td></tr>
+        <tr><td>Teams, players and squads you created</td><td><span class="tag del">Deleted</span></td></tr>
+        <tr><td>Matches, innings, every ball and scorecards you own</td><td><span class="tag del">Deleted</span></td></tr>
+        <tr><td>Share codes, and records of matches you joined or scored</td><td><span class="tag del">Deleted</span></td></tr>
+        <tr><td>Backups that held any of the above</td><td><span class="tag keep">Up to 30 days</span> then overwritten</td></tr>
+        <tr><td>Copies on other people&rsquo;s phones, for matches you shared with them</td><td><span class="tag keep">Not ours to delete</span> they stay on those phones</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>We keep nothing else after deletion. We do not hold payment details, because CricPulse takes none.</p>
+</section>
+
+<section class="sec" id="guest">
+  <h2><span class="n">D</span><span>Using CricPulse as a guest</span></h2>
+  <p>Guest data is stored only on your phone, so there is nothing of yours on our servers. To remove it, uninstall the app or clear its storage in Android settings.</p>
+</section>
+
+<section class="sec" id="partial">
+  <h2><span class="n">E</span><span>Want to remove only some data?</span></h2>
+  <p>You can keep your account and delete a single match or team inside the app. When you are online, deleting it also removes it from our servers.</p>
+</section>
+
+<section class="sec" id="google">
+  <h2><span class="n">F</span><span>Your Google account</span></h2>
+  <p>Deleting your CricPulse account does not touch your Google account. To also remove CricPulse&rsquo;s access to it, open your Google Account, go to Security, then Your connections to third-party apps and services, and remove CricPulse.</p>
+</section>
+
+  <section class="contact" id="contact">
+    <span class="label">Contact</span>
+    <code>m.umair.umairaftab@gmail.com</code>
+    <span>Need help deleting your account? Write to us. <a href="mailto:m.umair.umairaftab@gmail.com">Open in your email app</a>.</span>
+  </section>
+  <p class="foot">&copy; 2026 CricPulse. A cricket scoring app.</p>
+</main>
+</body>
+</html>

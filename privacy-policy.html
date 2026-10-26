@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How the CricPulse cricket scoring app collects, uses and protects your data.">
+<title>CricPulse Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Sora:wght@600;700&display=swap">
+<style>
+/* Layout: one reading column. A thin pulse line (the heartbeat from the app logo) separates the masthead from the document. */
+:root{
+  --bg:#F4F7F5; --surface:#FFFFFF; --fg:#0F172A; --muted:#546274; --line:#DAE3DE;
+  --accent:#157A3E; --accent-bg:#E7F4EC; --accent-line:#BFE0CB;
+  --pulse:#D6283A;
+  --warn:#9A3412; --warn-bg:#FDEFE8; --warn-line:#F2CDBD;
+  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-display:'Sora','Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --surface:#111B30; --fg:#E7EDF5; --muted:#92A3B8; --line:#1E2B44;
+    --accent:#4ADE9A; --accent-bg:#0E2A22; --accent-line:#1B5A43;
+    --pulse:#FF5468;
+    --warn:#FDBA9B; --warn-bg:#2B1812; --warn-line:#5A3223;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --surface:#111B30; --fg:#E7EDF5; --muted:#92A3B8; --line:#1E2B44;
+  --accent:#4ADE9A; --accent-bg:#0E2A22; --accent-line:#1B5A43;
+  --pulse:#FF5468;
+  --warn:#FDBA9B; --warn-bg:#2B1812; --warn-line:#5A3223;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg);
+  font:400 16px/1.7 var(--font-body);
+  padding-block:28px 72px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:44rem;margin:0 auto;display:flex;flex-direction:column;gap:28px;min-width:0}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font:700 1.15rem/1 var(--font-display);letter-spacing:.01em}
+.brand b{color:var(--accent);font-weight:700}
+.doc-kind{font:500 .72rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pulse{display:flex;align-items:center;gap:0}
+.pulse svg{flex:none;display:block}
+.pulse i{flex:1;height:2px;background:var(--line);min-width:0}
+.pulse .lead{flex:none;width:24px;height:2px;background:var(--pulse)}
+h1{font:700 clamp(1.9rem,5.4vw,2.7rem)/1.12 var(--font-display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 0;padding:0;list-style:none;font:500 .76rem/1.5 var(--font-mono);color:var(--muted)}
+.meta strong{color:var(--fg);font-weight:500}
+.lede{font-size:1.06rem;color:var(--fg);margin:0;max-width:62ch}
+.summary{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.summary h2{margin:0;font:600 .74rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.summary ul{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:6px}
+.summary li::marker{color:var(--accent)}
+.toc{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px 20px}
+.toc h2{margin:0 0 10px;font:600 .74rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:0;padding:0;list-style:none;columns:2 15rem;column-gap:28px}
+.toc li{break-inside:avoid;padding:3px 0;font-size:.94rem}
+.toc a{text-decoration:none;color:var(--fg)}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+.toc .n{display:inline-block;width:1.9em;font:500 .78rem var(--font-mono);color:var(--accent)}
+.sec{display:flex;flex-direction:column;gap:12px;min-width:0;scroll-margin-top:16px}
+.sec h2{margin:0;font:600 1.3rem/1.3 var(--font-display);display:flex;gap:12px;align-items:baseline;text-wrap:balance}
+.sec h2 .n{font:500 .8rem var(--font-mono);color:var(--accent);flex:none;min-width:1.7em}
+.sec h3{margin:10px 0 0;font:600 1rem/1.4 var(--font-body)}
+.sec p{margin:0;max-width:65ch}
+.sec ul,.sec ol.plain{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px;max-width:65ch}
+.sec li::marker{color:var(--muted)}
+.sec .sub{display:flex;flex-direction:column;gap:6px}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px;max-width:65ch}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:12px;align-items:start}
+ol.steps li::before{content:counter(s);width:2rem;height:2rem;border-radius:50%;background:var(--accent-bg);border:1px solid var(--accent-line);color:var(--accent);font:600 .85rem/1 var(--font-mono);display:grid;place-items:center}
+ol.steps li>div{padding-top:3px;min-width:0}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:30rem;font-size:.93rem;line-height:1.5}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font:600 .7rem/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+td:first-child{font-weight:500}
+.tag{display:inline-block;font:600 .68rem/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:6px;white-space:nowrap}
+.tag.del{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-line)}
+.tag.keep{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-line)}
+.note{border:1px solid var(--warn-line);background:var(--warn-bg);color:var(--fg);border-radius:12px;padding:14px 16px;max-width:65ch}
+.contact{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.contact .label{font:600 .72rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.contact code{font:500 1rem/1.5 var(--font-mono);color:var(--fg);word-break:break-all;user-select:all}
+.foot{font:500 .76rem/1.6 var(--font-mono);color:var(--muted);padding-top:4px}
+@media (max-width:480px){
+  .sec h2{flex-direction:column;gap:2px}
+  th,td{padding:10px 12px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="mast">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.5" fill="#D6283A"/><path d="M6.2 5.8c4.6 3.4 4.6 13 0 16.4M21.8 5.8c-4.6 3.4-4.6 13 0 16.4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="1.6 2.2"/></svg>
+      <span>Cric<b>Pulse</b></span>
+    </div>
+    <span class="doc-kind">Privacy Policy</span>
+  </header>
+  <div class="pulse" aria-hidden="true">
+    <span class="lead"></span>
+    <svg width="92" height="26" viewBox="0 0 92 26"><polyline points="0,13 20,13 28,13 34,4 42,22 49,8 55,13 92,13" fill="none" stroke="var(--pulse)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    <i></i>
+  </div>
+  <div>
+    <h1>How CricPulse handles your data</h1>
+    <ul class="meta">
+      <li><strong>Effective</strong> 26 October 2026</li>
+      <li><strong>App</strong> CricPulse for Android</li>
+    </ul>
+  </div>
+<p class="lede">CricPulse scores cricket matches. This page says plainly what it stores, where, and how you can take it back.</p>
+<aside class="summary">
+  <h2>In short</h2>
+  <ul>
+    <li>As a guest, everything stays on your phone. Nothing is sent to us.</li>
+    <li>If you sign in with Google, your teams, players and matches are saved to our servers so you can back them up and share a match with another phone.</li>
+    <li>No ads, no analytics trackers, and we never sell your data.</li>
+    <li>You can delete your account and everything linked to it from the app, or by emailing us.</li>
+  </ul>
+</aside>
+<nav class="toc" aria-label="Contents"><h2>On this page</h2><ol><li><a href="#who"><span class="n">01</span>Who we are</a></li><li><a href="#collect"><span class="n">02</span>What we collect</a></li><li><a href="#use"><span class="n">03</span>How we use it</a></li><li><a href="#share"><span class="n">04</span>Who it is shared with</a></li><li><a href="#security"><span class="n">05</span>Where it is stored and how it is protected</a></li><li><a href="#keep"><span class="n">06</span>How long we keep it</a></li><li><a href="#rights"><span class="n">07</span>Your choices and rights</a></li><li><a href="#children"><span class="n">08</span>Children</a></li><li><a href="#changes"><span class="n">09</span>Changes to this policy</a></li></ol></nav>
+<section class="sec" id="who"><h2><span class="n">01</span><span>Who we are</span></h2>
+<p>CricPulse is a cricket scoring app for Android. In this policy, &ldquo;we&rdquo; and &ldquo;us&rdquo; mean the people who make and run CricPulse. It explains what the app collects, why, who can see it and how you can remove it.</p>
+</section>
+<section class="sec" id="collect"><h2><span class="n">02</span><span>What we collect</span></h2>
+<div class="sub">
+  <h3>If you use the app as a guest</h3>
+  <p>Nothing is sent to us. Teams, players and matches are stored on your phone only. Uninstalling the app or clearing its storage deletes them.</p>
+</div>
+<div class="sub">
+  <h3>If you sign in with Google</h3>
+  <p>Through our sign-in provider Supabase, we receive your name, email address, profile picture link and a unique account ID from Google. We never see your Google password.</p>
+</div>
+<div class="sub">
+  <h3>Cricket data you create while signed in</h3>
+  <p>Team names, short codes and colours. Player names, short names, batting hand, bowling style and notes. Match details such as teams, overs, ground, toss and rules, plus every innings, every ball bowled and the scorecards built from them. This is saved to our servers so you can back it up and share it. Please add only the names of people who are happy to be listed.</p>
+</div>
+<div class="sub">
+  <h3>Shared matches</h3>
+  <p>When you share a match, the app creates a random join code and QR code. Anyone who enters it can open that match and score the innings given to them. We record which accounts joined a match and who scores each innings.</p>
+</div>
+<div class="sub">
+  <h3>Camera</h3>
+  <p>The camera is used only on the Join Match screen, to scan a match QR code. The image is read on your phone to find the code. No photo or video is saved or uploaded. You can switch camera access off in Android settings and type the join code instead.</p>
+</div>
+<div class="sub">
+  <h3>Technical data</h3>
+  <p>When the app opens it may check for an update from Expo&rsquo;s update service, which receives the app version, your platform and your IP address. When you use the cloud features, our hosting provider logs standard request data such as IP address and time. We use this only to deliver and secure the service.</p>
+</div>
+<div class="sub">
+  <h3>What we do not collect</h3>
+  <p>Your location, contacts, microphone recordings, advertising ID or payment details. The app contains no advertising or analytics tracking.</p>
+</div>
+</section>
+<section class="sec" id="use"><h2><span class="n">03</span><span>How we use it</span></h2>
+<ul>
+  <li>To sign you in and keep your account.</li>
+  <li>To save, restore and show your teams, players, matches and scorecards.</li>
+  <li>To let you share a match and let others join it.</li>
+  <li>To keep the service secure, prevent abuse and fix bugs.</li>
+  <li>To answer your support and deletion requests.</li>
+</ul>
+<p>We do not use your data for advertising or profiling.</p>
+</section>
+<section class="sec" id="share"><h2><span class="n">04</span><span>Who it is shared with</span></h2>
+<ul>
+  <li><strong>Other people in a match you share.</strong> They can see that match&rsquo;s teams, players and scores.</li>
+  <li><strong>Supabase.</strong> Provides our database, sign-in and hosting, and stores your account and cricket data for us.</li>
+  <li><strong>Google.</strong> Runs &ldquo;Continue with Google&rdquo;. Google handles that step under its own privacy policy.</li>
+  <li><strong>Expo.</strong> Delivers over-the-air app updates.</li>
+  <li><strong>Authorities.</strong> Only when the law requires it or to protect people from harm.</li>
+</ul>
+<p>We do not sell or rent personal data, and we do not share it for advertising.</p>
+</section>
+<section class="sec" id="security"><h2><span class="n">05</span><span>Where it is stored and how it is protected</span></h2>
+<p>Signed-in data is stored on Supabase infrastructure and may be processed in countries other than your own. It travels over encrypted connections (HTTPS). Access rules on the database make sure an account can read only its own data and the matches it has joined. No system is perfectly secure, but we take reasonable steps to protect your information.</p>
+</section>
+<section class="sec" id="keep"><h2><span class="n">06</span><span>How long we keep it</span></h2>
+<ul>
+  <li>Signed-in data is kept while your account exists.</li>
+  <li>Guest data stays on your phone until you remove the app or clear its storage.</li>
+  <li>When you delete your account, your data is removed from our live database straight away. Backups that may still hold it are overwritten on their normal cycle, within 30 days.</li>
+</ul>
+</section>
+<section class="sec" id="rights"><h2><span class="n">07</span><span>Your choices and rights</span></h2>
+<ul>
+  <li><strong>Delete your account and data.</strong> In the app, go to Settings, then Account, then Delete Account. You can also email us. Full steps are on our Delete Account page.</li>
+  <li><strong>Change your data.</strong> Edit or delete teams, players and matches inside the app at any time.</li>
+  <li><strong>Use the app without an account.</strong> Choose Continue as Guest.</li>
+  <li><strong>Turn off the camera.</strong> Use Android settings. The app keeps working.</li>
+</ul>
+<p>If you are in the EEA, the UK or another region with data protection law, you may also ask for a copy of your data, ask us to correct it, object to how we use it, or complain to your local data protection authority. We process your data to provide the app you asked for, to keep it secure, and, for the camera, with your permission. Email us and we will reply within 30 days.</p>
+</section>
+<section class="sec" id="children"><h2><span class="n">08</span><span>Children</span></h2>
+<p>CricPulse is not directed at children under 13, and we do not knowingly collect their personal information. If you believe a child has created an account, email us and we will delete it.</p>
+</section>
+<section class="sec" id="changes"><h2><span class="n">09</span><span>Changes to this policy</span></h2>
+<p>If we change how we handle data, we will update this page and its effective date, and tell you in the app when the change is significant. This version is effective 26 October 2026.</p>
+</section>
+  <section class="contact" id="contact">
+    <span class="label">Contact</span>
+    <code>m.umair.umairaftab@gmail.com</code>
+    <span>Questions about privacy or your data? Write to us. <a href="mailto:m.umair.umairaftab@gmail.com">Open in your email app</a>.</span>
+  </section>
+  <p class="foot">&copy; 2026 CricPulse. A cricket scoring app.</p>
+</main>
+</body>
+</html>
