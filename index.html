@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Inningz is a free cricket scoring app for Android: ball-by-ball scoring, live scorecards and squads for street, tape-ball and club matches.">
 <title>Inningz: Cricket Scorer</title>
+<link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Sora:wght@600;700&display=swap">
@@ -51,6 +53,8 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-of
 .brand{display:flex;align-items:center;gap:10px;font:700 1.15rem/1 var(--font-display);letter-spacing:.01em}
 .brand b{color:var(--accent);font-weight:700}
 .doc-kind{font:500 .72rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.play-badge{display:inline-block;line-height:0;border-radius:10px}
+.play-badge img{display:block;width:auto;height:64px;margin:-8px -8px}
 .pulse{display:flex;align-items:center;gap:0}
 .pulse svg{flex:none;display:block}
 .pulse i{flex:1;height:2px;background:var(--line);min-width:0}
@@ -110,7 +114,7 @@ td:first-child{font-weight:500}
       <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.5" fill="#D6283A"/><path d="M6.2 5.8c4.6 3.4 4.6 13 0 16.4M21.8 5.8c-4.6 3.4-4.6 13 0 16.4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="1.6 2.2"/></svg>
       <span>Inning<b>z</b></span>
     </div>
-    <span class="doc-kind">Cricket scorer</span>
+    <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.inningz.app"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="646" height="250"></a>
   </header>
   <section class="sec">
     <h1>Inningz: Cricket Scorer</h1>
