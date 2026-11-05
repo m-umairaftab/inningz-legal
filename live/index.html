@@ -157,8 +157,18 @@ body{
 
 <script>
 (function() {
-  const SUPABASE_URL = 'https://wyfkzazvgiwxbnmwldsc.supabase.co';
-  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Zmt6YXp2Z2l3eGJubXdsZHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3MzA2NDQsImV4cCI6MjEwODMwNjY0NH0.ymElJsepIUuLLLl0TQ23H4-FIhWNDfq8TnRzazK5PG0';
+  const ENVIRONMENTS = [
+    {
+      name: 'prod',
+      url: 'https://eagmswyijddacfarkevt.supabase.co',
+      anon: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVhZ21zd3lpamRkYWNmYXJrZXZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwMDkzMzksImV4cCI6MjEwODU4NTMzOX0.U27Uv2Yx5KMR3oN7wfngjYt8kupc9C28kGdxiHphTHY'
+    },
+    {
+      name: 'stg',
+      url: 'https://wyfkzazvgiwxbnmwldsc.supabase.co',
+      anon: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Zmt6YXp2Z2l3eGJubXdsZHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3MzA2NDQsImV4cCI6MjEwODMwNjY0NH0.ymElJsepIUuLLLl0TQ23H4-FIhWNDfq8TnRzazK5PG0'
+    }
+  ];
 
   const params = new URLSearchParams(window.location.search);
   const matchId = params.get('id') || params.get('code') || '';
@@ -170,29 +180,49 @@ body{
 
   let pollTimer = null;
   let lastUpdatedAt = null;
+  let activeEnv = null;
 
   if (!matchId) {
     showError('Match Not Specified', 'Please open a valid live match link shared from Inningz app.');
     return;
   }
 
-  async function fetchLiveScore() {
+  async function callRpc(env) {
     try {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_public_live_score`, {
+      const response = await fetch(`${env.url}/rest/v1/rpc/get_public_live_score`, {
         method: 'POST',
         headers: {
-          'apikey': SUPABASE_ANON,
-          'Authorization': `Bearer ${SUPABASE_ANON}`,
+          'apikey': env.anon,
+          'Authorization': `Bearer ${env.anon}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ p_match_id: matchId })
       });
+      if (!response.ok) return null;
+      return await response.json();
+    } catch {
+      return null;
+    }
+  }
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+  async function fetchLiveScore() {
+    try {
+      let data = null;
+      if (activeEnv) {
+        data = await callRpc(activeEnv);
+      } else {
+        data = await callRpc(ENVIRONMENTS[0]);
+        if (data && data.found) {
+          activeEnv = ENVIRONMENTS[0];
+        } else {
+          const stgData = await callRpc(ENVIRONMENTS[1]);
+          if (stgData && stgData.found) {
+            data = stgData;
+            activeEnv = ENVIRONMENTS[1];
+          }
+        }
       }
 
-      const data = await response.json();
       if (!data || !data.found) {
         showError('Match Not Found', 'This match does not exist or has not been synced to the cloud yet.');
         return;
@@ -278,6 +308,12 @@ body{
           <div class="ball-ribbon">${ballsHtml}</div>
         </div>
       `;
+    } else if (!isCompleted) {
+      ribbonHtml = `
+        <div style="margin-top:12px;padding:12px;background:var(--surface-sub);border:1px dashed var(--line);border-radius:10px;text-align:center;font:500 0.8rem var(--font-mono);color:var(--muted)">
+          🏏 Match started. Waiting for the first ball...
+        </div>
+      `;
     }
 
     // Batters Table
@@ -318,6 +354,12 @@ body{
             </thead>
             <tbody>${rows}</tbody>
           </table>
+        </div>
+      `;
+    } else if (!isCompleted) {
+      battersHtml = `
+        <div style="margin-top:12px;padding:12px;background:var(--surface-sub);border-radius:10px;text-align:center;font:500 0.8rem var(--font-body);color:var(--muted)">
+          Players will appear here as soon as scoring starts.
         </div>
       `;
     }
