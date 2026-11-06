@@ -6,7 +6,7 @@
 <!-- The link carries a private token: keep it out of search results and out of Referer headers -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://*.supabase.co; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://play.google.com; connect-src https://*.supabase.co; base-uri 'none'; form-action 'none'">
 <meta name="description" content="Follow this cricket match live, ball by ball, scored with Inningz.">
 <meta property="og:title" content="Live cricket score - Inningz">
 <meta property="og:description" content="Follow this match live, ball by ball.">
@@ -16,13 +16,21 @@
 <link rel="stylesheet" href="live.css">
 </head>
 <body>
+<header class="brand">
+  <img class="brand-logo" src="../favicon.png" alt="" width="28" height="28">
+  <span class="brand-name">Inningz</span>
+  <span class="brand-tag">Live Score</span>
+</header>
 <main class="page" id="app">
   <p class="message" id="loading">Loading the live score...</p>
   <noscript><p class="message">Live scores need JavaScript. Please turn it on and reload.</p></noscript>
 </main>
 <footer class="foot">
-  <span>Scored with Inningz</span>
-  <a href="https://play.google.com/store/apps/details?id=com.inningz.app" rel="noopener noreferrer">Get the app</a>
+  <div class="promo">
+    <p class="promo-title">Scored with Inningz</p>
+    <p class="promo-sub">Ball-by-ball cricket scoring, scorecards and player stats.</p>
+    <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.inningz.app" target="_blank" rel="noopener noreferrer"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="646" height="250"></a>
+  </div>
 </footer>
 <script src="live.js"></script>
 </body>
