@@ -35,6 +35,9 @@
   var lastUpdatedAt = null; // the cloud's own stamp of the score on screen, sent back to skip unchanged replies
   var lastReceivedAtMs = 0;
   var snapshot = null;
+  var isSnapshotFull = false; // the snapshot on screen came with the full scorecard
+  var activeTab = 'live'; // 'live' or 'scorecard'
+  var selectedInnings = null; // the scorecard's innings (a number); null = the one being played
   var failures = 0;
   var pollTimer = null;
   var isStopped = false;
@@ -68,17 +71,12 @@
     return node;
   }
 
+  function scoreOf(innings) {
+    return num(innings.runs) + '/' + num(innings.wickets) + ' (' + innings.overs + ' ov)';
+  }
+
   function lineOf(innings) {
-    return (
-      innings.team +
-      ' ' +
-      num(innings.runs) +
-      '/' +
-      num(innings.wickets) +
-      ' (' +
-      innings.overs +
-      ' ov)'
-    );
+    return innings.team + ' ' + scoreOf(innings);
   }
 
   /* ---------- one ball in the recent-balls strip ---------- */
@@ -299,6 +297,64 @@
     return node;
   }
 
+  var ui = {
+    el: el,
+    num: num,
+    fixed: fixed,
+    plural: plural,
+    nameCell: nameCell,
+    describeBall: describeBall,
+    buildTable: buildTable,
+    scoreOf: scoreOf,
+    lineOf: lineOf,
+  };
+
+  /* ---------- the tabs ---------- */
+
+  function showTab(tab) {
+    if (tab === activeTab) return;
+    activeTab = tab;
+    // The scorecard is the big part of a reply: ask for it only now, and again only if the score moved on
+    if (tab === 'scorecard' && !isSnapshotFull) {
+      lastUpdatedAt = null;
+      render();
+      poll();
+      return;
+    }
+    render();
+  }
+
+  function buildTabs() {
+    var bar = el('div', 'tabs');
+    bar.setAttribute('role', 'tablist');
+    [
+      ['live', 'Live'],
+      ['scorecard', 'Scorecard'],
+    ].forEach(function (pair) {
+      var button = el('button', 'tab' + (activeTab === pair[0] ? ' tab-on' : ''), pair[1]);
+      button.type = 'button';
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-selected', activeTab === pair[0] ? 'true' : 'false');
+      button.addEventListener('click', function () {
+        showTab(pair[0]);
+      });
+      bar.appendChild(button);
+    });
+    return bar;
+  }
+
+  function buildScorecardTab(data) {
+    if (!isSnapshotFull) {
+      return [el('p', 'message', 'Loading the scorecard...')];
+    }
+    var count = data.scorecard ? data.scorecard.length : 0;
+    var selected = selectedInnings === null ? count - 1 : selectedInnings;
+    return window.LiveScorecard.build(ui, data, selected, function (index) {
+      selectedInnings = index;
+      render();
+    });
+  }
+
   /* ---------- the page ---------- */
 
   function showMessage(title, detail, withRetry) {
@@ -321,16 +377,26 @@
 
   function render() {
     var data = snapshot;
+    var scrollY = window.scrollY;
     app.textContent = '';
     if (failures > 0) {
       app.appendChild(el('p', 'offline', 'Reconnecting... showing the last score.'));
     }
     app.appendChild(buildHeader(data));
-    app.appendChild(buildScore(data));
-    [buildCrease(data), buildBowler(data), buildRecentBalls(data)].forEach(function (section) {
-      if (section) app.appendChild(section);
-    });
+    app.appendChild(buildTabs());
+    if (activeTab === 'scorecard') {
+      buildScorecardTab(data).forEach(function (node) {
+        app.appendChild(node);
+      });
+    } else {
+      app.appendChild(buildScore(data));
+      [buildCrease(data), buildBowler(data), buildRecentBalls(data)].forEach(function (section) {
+        if (section) app.appendChild(section);
+      });
+    }
     app.appendChild(buildUpdated());
+    // Drawing again must not throw the reader back to the top of a long scorecard
+    window.scrollTo(0, scrollY);
     document.title =
       data.batting.team +
       ' ' +
@@ -343,7 +409,7 @@
   /* ---------- talking to the cloud ---------- */
 
   function request() {
-    var body = { p_token: token };
+    var body = { p_token: token, p_full: activeTab === 'scorecard' };
     if (lastUpdatedAt) body.p_since = lastUpdatedAt;
     return fetch(env.url + '/rest/v1/rpc/get_live_score', {
       method: 'POST',
@@ -373,6 +439,8 @@
 
   function poll() {
     clearTimeout(pollTimer);
+    // What this request asks for, kept now: the reader may switch tabs before the answer comes
+    var askedFull = activeTab === 'scorecard';
     request()
       .then(function (reply) {
         var wasReconnecting = failures > 0;
@@ -393,6 +461,7 @@
           else refreshUpdated();
         } else if (reply.snapshot) {
           snapshot = reply.snapshot;
+          isSnapshotFull = askedFull;
           lastUpdatedAt = reply.updated_at;
           lastReceivedAtMs = Date.now();
           render();
