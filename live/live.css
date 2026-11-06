@@ -20,8 +20,8 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.4;min-height:100vh;display:flex;flex-direction:column}
-.page{width:100%;max-width:560px;margin:0 auto;padding:16px;flex:1}
+body{overflow-wrap:anywhere;margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.4;min-height:100vh;display:flex;flex-direction:column}
+.page{min-width:0;width:100%;max-width:560px;margin:0 auto;padding:16px;flex:1}
 .brand{display:flex;align-items:center;gap:10px;max-width:560px;width:100%;margin:0 auto;padding:14px 16px 0}
 .brand-logo{border-radius:7px;display:block}
 .brand-name{font-size:18px;font-weight:800;letter-spacing:-.01em}
@@ -40,7 +40,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-
 
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 2px rgba(15,23,42,.05)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
-.teams{margin:0;font-size:18px;font-weight:700;overflow-wrap:anywhere}
+.teams{min-width:0;margin:0;font-size:18px;font-weight:700;overflow-wrap:anywhere}
 .meta{margin:0;color:var(--muted);font-size:14px}
 
 .chip{flex:none;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
@@ -52,7 +52,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-
 @media (prefers-reduced-motion: reduce){.chip-live::before{animation:none}}
 
 .batting{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.batting-team{font-size:16px;font-weight:600;overflow-wrap:anywhere}
+.batting-team{min-width:0;font-size:16px;font-weight:600;overflow-wrap:anywhere}
 .score{font-size:48px;font-weight:800;line-height:1.05;letter-spacing:-.02em}
 .score small{font-size:18px;font-weight:600;color:var(--muted);margin-inline-start:6px;letter-spacing:0}
 .rates{margin:6px 0 0;color:var(--muted);font-size:14px}
