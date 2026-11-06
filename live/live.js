@@ -64,6 +64,11 @@
     return count + ' ' + word + (count === 1 ? '' : 's');
   }
 
+  // A name with its captain / vice captain / keeper mark: "Ali (c) †"
+  function withMark(name, mark) {
+    return mark ? name + ' ' + mark : name;
+  }
+
   // Names come from the scorer, in any language: let the browser pick each one's direction
   function nameCell(tag, className, text) {
     var node = el(tag, className, text);
@@ -225,7 +230,7 @@
     var rows = [];
     function batterRow(batter, isOnStrike) {
       return [
-        batter.name + (isOnStrike ? ' *' : ''),
+        withMark(batter.name, batter.mark) + (isOnStrike ? ' *' : ''),
         num(batter.runs),
         num(batter.balls),
         num(batter.fours),
@@ -247,7 +252,7 @@
       ['Bowler', 'O', 'M', 'R', 'W', 'Econ'],
       [
         [
-          bowler.name,
+          withMark(bowler.name, bowler.mark),
           bowler.overs,
           num(bowler.maidens),
           num(bowler.runs),
@@ -303,6 +308,7 @@
     fixed: fixed,
     plural: plural,
     nameCell: nameCell,
+    withMark: withMark,
     describeBall: describeBall,
     buildTable: buildTable,
     scoreOf: scoreOf,

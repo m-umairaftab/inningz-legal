@@ -75,7 +75,7 @@
       var name = ui.nameCell(
         'td',
         'name',
-        (batter.name || 'Batter') + (batter.isAtCrease ? ' *' : '')
+        ui.withMark(batter.name || 'Batter', batter.mark) + (batter.isAtCrease ? ' *' : '')
       );
       name.appendChild(ui.el('span', 'how', dismissalText(batter)));
       row.appendChild(name);
@@ -112,7 +112,7 @@
       ['Bowler', 'O', 'M', 'R', 'W', 'Econ'],
       card.bowlers.map(function (bowler) {
         return [
-          bowler.name || 'Bowler',
+          ui.withMark(bowler.name || 'Bowler', bowler.mark),
           bowler.overs,
           ui.num(bowler.maidens),
           ui.num(bowler.runs),
