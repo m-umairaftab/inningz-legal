@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://inningz.app/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://inningz.app/privacy-policy.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inningz.app/terms-of-service.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://inningz.app/delete-account.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+</urlset>
